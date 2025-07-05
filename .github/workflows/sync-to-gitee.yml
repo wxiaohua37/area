@@ -1,29 +1,36 @@
-name: Sync to Gitee
+name: Sync from Gitee
 
 on:
-  push:
-    branches: [ master ]
+  schedule:
+    - cron: '0 * * * *'  # 每小时同步一次
+  workflow_dispatch:     # 允许手动触发
 
 jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout GitHub repository
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0
+          fetch-depth: 0  # 获取完整历史记录
 
-      - name: Mirror to Gitee
-        uses: wearerequired/git-mirror@v1
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.GITEE_TOKEN }}
-        with:
-          # 替换为你的 Gitee 仓库地址
-          destination-repo: "git@gitee.com:wwhhaha/area.git"
-          
-      - name: Notify Gitee
+      - name: Add Gitee remote
         run: |
-          curl -X POST \
-          -H "Content-Type: application/json" \
-          -d '{"access_token":"${{ secrets.GITEE_TOKEN }}", "ref":"master"}' \
-          "https://gitee.com/api/v5/repos/your_username/your_repo/trigger/pipeline"
+          git remote add gitee https://gitee.com/wwhhaha/area.git
+          git fetch gitee
+
+      - name: Merge Gitee changes
+        run: |
+          git config --global user.name "GitHub Sync Bot"
+          git config --global user.email "github-actions@github.com"
+          
+          # 合并 Gitee 的 master 分支
+          git merge gitee/master --allow-unrelated-histories
+          
+          # 解决简单冲突（接受所有更改）
+          git checkout --theirs . || true
+          git add -A
+          git commit -m "Merge from Gitee" || true
+
+      - name: Push to GitHub
+        run: git push origin HEAD:master
