@@ -1,0 +1,30 @@
+{
+    "name": "xiaohua/area",
+    "type": "library",
+    "license": "MIT",
+    "description": "webman plugin xiaohua/area. ",
+    "authors": [
+        {
+            "name": "xiaohua",
+            "email": "once_emails@163.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.4",
+        "ext-http": "*"
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^5.4",
+        "phpunit/phpunit": "^9.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "XiaoHua\\Area\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests"
+        }
+    }
+}
