@@ -4,6 +4,13 @@
 
 This is a PHP tool library for handling regional data, providing convenient functions for querying and manipulating regional information.
 
+## Installation
+Install via Composer:
+
+```bash
+composer require wxiaohua/area
+```
+
 ## Features
 
 - Retrieve regional information by ID

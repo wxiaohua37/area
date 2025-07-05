@@ -2,6 +2,13 @@
 
 这是一个用于处理区域数据的PHP工具库，提供便捷的区域信息查询和操作功能。
 
+## 安装
+使用 Composer 安装：
+
+```bash
+composer require wxiaohua/area
+```
+
 ## 功能特性
 
 - 支持通过ID获取区域信息
