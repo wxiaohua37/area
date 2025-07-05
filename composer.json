@@ -1,7 +1,8 @@
 {
     "name": "wxiaohua/area",
     "type": "library",
-    "license": "MIT",
+    "license": "Apache",
+    "version": "1.0.0",
     "description": "webman plugin wxiaohua/area. ",
     "authors": [
         {
