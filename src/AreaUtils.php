@@ -53,7 +53,7 @@ class AreaUtils
         $this->parseCsv($csvPath);
 
         // 构建树形结构
-        foreach ($this->areas as $id => &$area) {
+        foreach ($this->areas as &$area) {
             if ($area['parent_id'] !== null && isset($this->areas[$area['parent_id']])) {
                 $this->areas[$area['parent_id']]['children'][] = &$area;
             }
