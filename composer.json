@@ -1,11 +1,11 @@
 {
-    "name": "xiaohua/area",
+    "name": "wxiaohua/area",
     "type": "library",
     "license": "MIT",
-    "description": "webman plugin xiaohua/area. ",
+    "description": "webman plugin wxiaohua/area. ",
     "authors": [
         {
-            "name": "xiaohua",
+            "name": "wxiaohua",
             "email": "once_emails@163.com"
         }
     ],
