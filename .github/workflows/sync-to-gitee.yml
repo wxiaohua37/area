@@ -9,28 +9,32 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout GitHub repository
-        uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0  # 获取完整历史记录
 
-      - name: Add Gitee remote
-        run: |
-          git remote add gitee https://gitee.com/wwhhaha/area.git
-          git fetch gitee
-
-      - name: Merge Gitee changes
+      - name: Setup Git identity
         run: |
           git config --global user.name "GitHub Sync Bot"
           git config --global user.email "github-actions@github.com"
           
-          # 合并 Gitee 的 master 分支
-          git merge gitee/master --allow-unrelated-histories
+      - name: Add Gitee remote
+        run: |
+          git remote add gitee https://${{ secrets.GITEE_USER }}:${{ secrets.GITEE_TOKEN }}@gitee.com:wwhhaha/area.git
           
-          # 解决简单冲突（接受所有更改）
+      - name: Fetch Gitee changes
+        run: git fetch gitee
+          
+      - name: Merge changes
+        run: |
+          # 合并 Gitee 的 master 分支
+          git merge gitee/master --allow-unrelated-histories --strategy-option theirs
+          
+          # 解决可能的冲突（接受所有更改）
           git checkout --theirs . || true
           git add -A
           git commit -m "Merge from Gitee" || true
-
+          
       - name: Push to GitHub
         run: git push origin HEAD:master
