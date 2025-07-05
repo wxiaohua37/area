@@ -6,8 +6,23 @@ use RuntimeException;
 
 class AreaUtils
 {
-    public const ID_GLOBAL = 0;
-    public const ID_CHINA = 1;
+    /** @var int 全球 */
+    const ID_GLOBAL = 0;
+
+    /** @var int 中国 */
+    const ID_CHINA = 1;
+
+    /** @var int 国家 */
+    const COUNTRY = 1;
+
+    /** @var int 省份 */
+    const PROVINCE = 2;
+
+    /** @var int 城市 */
+    const CITY = 3;
+
+    /** @var int 地区 */
+    const DISTRICT = 4;
 
     private static ?self $instance = null;
 
@@ -51,7 +66,7 @@ class AreaUtils
         $this->areas[self::ID_GLOBAL] = [
             'id' => self::ID_GLOBAL,
             'name' => '全球',
-            'type' => 0,
+            'type' => self::COUNTRY,
             'parent_id' => null,
         ];
 
@@ -149,7 +164,7 @@ class AreaUtils
         $area = $this->get($id);
 
         while ($area && !in_array($area['id'], [self::ID_GLOBAL, self::ID_CHINA])) {
-            if ($area['type'] === 2 && mb_substr($area['name'], -1) === '市') {
+            if ($area['type'] === self::PROVINCE && mb_substr($area['name'], -1) === '市') {
                 $path[] = mb_substr($area['name'], 0, -1);
             } else {
                 $path[] = $area['name'];
