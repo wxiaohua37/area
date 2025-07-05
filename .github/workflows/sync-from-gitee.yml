@@ -21,7 +21,12 @@ jobs:
           
       - name: Add Gitee remote
         run: |
-          git remote add gitee https://${{ secrets.GITEE_USER }}:${{ secrets.GITEE_TOKEN }}@gitee.com:wwhhaha/area.git
+          # 添加 Gitee 远程仓库（不包含认证信息）
+          git remote add gitee https://gitee.com/wwhhaha/area.git
+          
+          # 单独配置认证
+          git config credential.helper 'store --file=.git/credentials'
+          echo "https://${{ secrets.GITEE_USER }}:${{ secrets.GITEE_TOKEN }}@gitee.com" > .git/credentials
           
       - name: Fetch Gitee changes
         run: git fetch gitee
