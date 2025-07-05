@@ -10,8 +10,7 @@
         }
     ],
     "require": {
-        "php": ">=7.4",
-        "ext-http": "*"
+        "php": ">=7.4"
     },
     "require-dev": {
         "symfony/var-dumper": "^5.4",
