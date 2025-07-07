@@ -1,4 +1,4 @@
-# XiaoHua 区域工具库
+# 区域工具库
 
 这是一个用于处理区域数据的PHP工具库，提供便捷的区域信息查询和操作功能。
 
@@ -68,4 +68,4 @@ $provinceId = AreaFacade::parentOfType(110105, AreaUtils::PROVINCE);
 
 ## 许可证
 
-本项目采用 MIT 许可证。详见 LICENSE 文件。
+本项目采用 Apache-2.0 许可证。详见 LICENSE 文件。
