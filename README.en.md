@@ -1,6 +1,6 @@
 
 
-# XiaoHua Regional Tools Library
+# Regional Tools Library
 
 This is a PHP tool library for handling regional data, providing convenient functions for querying and manipulating regional information.
 
@@ -70,4 +70,4 @@ The project includes comprehensive unit tests with high test coverage to ensure 
 
 ## License
 
-This project is released under the MIT License. Please see the LICENSE file for details.
+This project is released under the Apache-2.0 License. Please see the LICENSE file for details.
